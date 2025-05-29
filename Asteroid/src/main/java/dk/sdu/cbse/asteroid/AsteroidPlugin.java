@@ -28,7 +28,7 @@ public class AsteroidPlugin implements IPluginService {
         asteroid.calcRadius();
         asteroid.setX(random.nextInt(gameData.getWidth()));
         asteroid.setY(random.nextInt(gameData.getHeight()));
-        asteroid.setRotation(random.nextInt(161));
+        asteroid.setRotation(random.nextInt(360));
         return asteroid;
     }
 }
