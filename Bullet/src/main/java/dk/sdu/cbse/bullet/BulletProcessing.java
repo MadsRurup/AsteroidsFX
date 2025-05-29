@@ -2,15 +2,14 @@ package dk.sdu.cbse.bullet;
 
 import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
-import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.bullet.Bullet;
-import dk.sdu.cbse.common.services.IProcessService;
+import dk.sdu.cbse.common.services.IProcessingService;
 import dk.sdu.cbse.common.bullet.BulletSPI;
 
 import java.util.List;
 
-public class BulletProcess implements IProcessService, BulletSPI {
+public class BulletProcessing implements IProcessingService, BulletSPI {
     private float speed = 5;
 
     @Override

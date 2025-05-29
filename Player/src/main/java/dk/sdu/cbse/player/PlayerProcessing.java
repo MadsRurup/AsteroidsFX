@@ -5,14 +5,12 @@ import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.bullet.BulletSPI;
-import dk.sdu.cbse.common.services.IPluginService;
-import dk.sdu.cbse.common.services.IProcessService;
+import dk.sdu.cbse.common.services.IProcessingService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-public class PlayerProcess implements IProcessService {
+public class PlayerProcessing implements IProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         int speed = 1;

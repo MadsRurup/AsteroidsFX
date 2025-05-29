@@ -1,6 +1,8 @@
+import dk.sdu.cbse.common.services.IProcessingService;
+
 module Core {
     uses dk.sdu.cbse.common.services.IPluginService;
-    uses dk.sdu.cbse.common.services.IProcessService;
+    uses IProcessingService;
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;
