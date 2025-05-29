@@ -5,12 +5,12 @@ import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.bullet.BulletSPI;
-import dk.sdu.cbse.common.services.IProcessingService;
+import dk.sdu.cbse.common.services.IProcessorService;
 
 import java.util.List;
 import java.util.ServiceLoader;
 
-public class PlayerProcessing implements IProcessingService {
+public class PlayerProcessor implements IProcessorService {
     @Override
     public void process(GameData gameData, World world) {
         int speed = 1;
@@ -39,8 +39,13 @@ public class PlayerProcessing implements IProcessingService {
                 player.setY(diffY + player.getY());
             }
             if (gameInput.isPressed(gameInput.getKeyNumber("SPACE"))) {
-                world.addEntity(getBulletSPIs().findFirst().get().createBullet(player));
+                if (player.shotsFired % 50 == 0) {
+                    world.addEntity(getBulletSPIs().findFirst().get().createBullet(player));
+                }
+                player.shotsFired++;
                 //System.out.println(getBulletSPIs().stream().count());
+            } else {
+                player.shotsFired = 0;
             }
             if (entity.getX()-entity.getRadius() > gameData.getWidth()) {
                 entity.setX(-entity.getRadius());

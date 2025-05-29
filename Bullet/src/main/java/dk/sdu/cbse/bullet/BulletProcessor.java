@@ -4,12 +4,12 @@ import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.bullet.Bullet;
-import dk.sdu.cbse.common.services.IProcessingService;
+import dk.sdu.cbse.common.services.IProcessorService;
 import dk.sdu.cbse.common.bullet.BulletSPI;
 
 import java.util.List;
 
-public class BulletProcessing implements IProcessingService, BulletSPI {
+public class BulletProcessor implements IProcessorService, BulletSPI {
     private float speed = 5;
 
     @Override
@@ -46,7 +46,7 @@ public class BulletProcessing implements IProcessingService, BulletSPI {
     @Override
     public Bullet createBullet(Entity shooter) {
         Bullet bullet = new Bullet();
-        bullet.setPolygonCoordinates(1, -1, 1, 1, -1, 1, -1, -1);
+        bullet.setPolygonCoordinates(2, -2, 2, 2, -2, 2, -2, -2);
         bullet.setRotation(shooter.getRotation());
         bullet.calcRadius();
         bullet.normalizePolygon();

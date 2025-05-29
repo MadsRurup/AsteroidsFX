@@ -4,12 +4,13 @@ import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
-import dk.sdu.cbse.common.services.IProcessingService;
+import dk.sdu.cbse.common.services.IProcessorService;
+import dk.sdu.cbse.common.asteroid.Asteroid;
 
 import java.util.List;
 import java.util.Random;
 
-public class AsteroidProcessing implements IProcessingService {
+public class AsteroidProcessor implements IProcessorService {
     @Override
     public void process(GameData gameData, World world) {
         float speed = 0.5f;
@@ -36,6 +37,24 @@ public class AsteroidProcessing implements IProcessingService {
                 entity.setY(entity.getRadius()+gameData.getHeight());
             }
 
+            for (Entity entity2 : asteroids) {
+                if (entity.equals(entity2)) {
+                    continue;
+                }
+                if (collides(entity,entity2)) {
+
+                }
+            }
+
         }
+    }
+
+    public boolean collides(Entity entity1, Entity entity2) {
+        double diffX = entity1.getX() - entity2.getX();
+        double diffY = entity1.getY() - entity2.getY();
+        // Overcomplicated
+        //float distance = Math.sqrt(Math.pow(diffX,2) + Math.pow(diffY,2);
+        double distance = Math.sqrt(diffX*diffX + diffY*diffY);
+        return distance < (entity1.getRadius() + entity2.getRadius());
     }
 }

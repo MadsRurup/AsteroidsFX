@@ -92,12 +92,12 @@ public class GameData {
             gameWindow.getChildren().add(polygon);
 
             // Used to check polygon matches with coords
-            /*Polygon polygon1 = new Polygon(1, -1, 1, 1, -1, 1, -1, -1);
+            Polygon polygon1 = new Polygon(1, -1, 1, 1, -1, 1, -1, -1);
             polygon1.setTranslateX(entity.getX());
             polygon1.setTranslateY(entity.getY());
             polygon1.setRotate(entity.getRotation());
             polygon1.setFill(Color.RED);
-            gameWindow.getChildren().add(polygon1);*/
+            gameWindow.getChildren().add(polygon1);
         }
     }
 

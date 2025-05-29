@@ -5,13 +5,13 @@ import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.bullet.BulletSPI;
-import dk.sdu.cbse.common.services.IProcessingService;
+import dk.sdu.cbse.common.services.IProcessorService;
 
 import java.util.List;
 import java.util.Random;
 import java.util.ServiceLoader;
 
-public class EnemyProcessing implements IProcessingService {
+public class EnemyProcessor implements IProcessorService {
     @Override
     public void process(GameData gameData, World world) {
         float speed = 0.5f;

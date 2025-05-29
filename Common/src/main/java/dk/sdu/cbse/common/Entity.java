@@ -85,8 +85,6 @@ public class Entity {
 
     public void normalizePolygon() {
         double[] polygon = getPolygonCoordinates().clone();
-
-
         RadiusCalculation rc = new RadiusCalculation();
         ArrayList<Point> points = rc.getPoints(polygonCoordinates);
         Circle circle = rc.approximateCircle(points);
@@ -97,14 +95,15 @@ public class Entity {
             polygon[i*2] -= offSetX;
             polygon[i*2+1] -= offSetY;
         }
+        setRadius((float) circle.r);
         setPolygonCoordinates(polygon);
     }
 
     public void calcRadius() {
         RadiusCalculation rc = new RadiusCalculation();
         //rc.setPolygonCoordinates(getPolygonCoordinates());
-        Circle circle = rc.approximateCircle(rc.getPoints(getPolygonCoordinates()));
-        setRadius((float) circle.r);
+        //Circle circle = rc.approximateCircle(rc.getPoints(getPolygonCoordinates()));
+        //setRadius((float) circle.r);
         //System.out.println(circle.r +" " + circle.c.x + " " + circle.c.y);
     }
 
