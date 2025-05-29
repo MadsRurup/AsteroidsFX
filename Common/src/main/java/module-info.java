@@ -4,4 +4,5 @@ module Common {
     requires javafx.controls;
     exports dk.sdu.cbse.common;
     exports dk.sdu.cbse.common.services;
+    exports dk.sdu.cbse.common.geometry;
 }

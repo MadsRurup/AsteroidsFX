@@ -1,4 +1,9 @@
 package dk.sdu.cbse.common;
+import dk.sdu.cbse.common.geometry.Circle;
+import dk.sdu.cbse.common.geometry.Point;
+import dk.sdu.cbse.common.geometry.RadiusCalculation;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Entity {
@@ -9,6 +14,11 @@ public class Entity {
     private double y;
     private double rotation;
     private float radius;
+    private float moveSpeed;
+    private float rotationSpeed;
+
+    public Entity() {
+    }
 
 
     public String getID() {
@@ -57,4 +67,47 @@ public class Entity {
     public float getRadius() {
         return this.radius;
     }
+
+    public void setMoveSpeed(float moveSpeed) {
+        this.moveSpeed = moveSpeed;
+    }
+
+    public float getMoveSpeed() {
+        return moveSpeed;
+    }
+    public void setRotationSpeed(float rotationSpeed){
+        this.rotationSpeed = rotationSpeed;
+    }
+
+    public float getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public void normalizePolygon() {
+        double[] polygon = getPolygonCoordinates().clone();
+
+
+        RadiusCalculation rc = new RadiusCalculation();
+        ArrayList<Point> points = rc.getPoints(polygonCoordinates);
+        Circle circle = rc.approximateCircle(points);
+
+        double offSetX = circle.c.x;
+        double offSetY = circle.c.y;
+        for (int i = 0; i < points.size(); i++) {
+            polygon[i*2] -= offSetX;
+            polygon[i*2+1] -= offSetY;
+        }
+        setPolygonCoordinates(polygon);
+    }
+
+    public void calcRadius() {
+        RadiusCalculation rc = new RadiusCalculation();
+        //rc.setPolygonCoordinates(getPolygonCoordinates());
+        Circle circle = rc.approximateCircle(rc.getPoints(getPolygonCoordinates()));
+        setRadius((float) circle.r);
+        //System.out.println(circle.r +" " + circle.c.x + " " + circle.c.y);
+    }
+
+
+
 }

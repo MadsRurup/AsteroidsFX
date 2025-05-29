@@ -21,10 +21,12 @@ public class PlayerPlugin implements IPluginService {
     }
     private Player createPlayer(GameData gameData) {
         Player player = new Player();
-        double[] coords = {0,0,0,50,50,50,50,0};
+        double[] coords = {0,0,34,12,0,24,9,12};
         player.setPolygonCoordinates(coords);
         player.setX((double) gameData.getWidth() /2);
         player.setY((double) gameData.getHeight() /2);
+        player.normalizePolygon();
+        player.calcRadius();
         return player;
     }
 }
