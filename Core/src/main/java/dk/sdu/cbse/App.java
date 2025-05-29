@@ -3,14 +3,12 @@ package dk.sdu.cbse;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.World;
 import dk.sdu.cbse.common.services.IPluginService;
-import dk.sdu.cbse.common.services.IProcessService;
+import dk.sdu.cbse.common.services.IProcessingService;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 
-import java.util.Collection;
 import java.util.ServiceLoader;
 
 
@@ -37,7 +35,7 @@ public class App extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (IProcessService service : getProcessService()) {
+                for (IProcessingService service : getProcessingService()) {
                     service.process(gameData,world);
 
                 }
@@ -54,8 +52,8 @@ public class App extends Application {
     private ServiceLoader<IPluginService> getPluginServices() {
         return ServiceLoader.load(IPluginService.class);
     }
-    private ServiceLoader<IProcessService> getProcessService() {
-        return ServiceLoader.load(IProcessService.class);
+    private ServiceLoader<IProcessingService> getProcessingService() {
+        return ServiceLoader.load(IProcessingService.class);
     }
 
 

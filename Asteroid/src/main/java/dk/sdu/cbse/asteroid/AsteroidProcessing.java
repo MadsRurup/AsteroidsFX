@@ -4,12 +4,12 @@ import dk.sdu.cbse.common.Entity;
 import dk.sdu.cbse.common.GameData;
 import dk.sdu.cbse.common.GameInput;
 import dk.sdu.cbse.common.World;
-import dk.sdu.cbse.common.services.IProcessService;
+import dk.sdu.cbse.common.services.IProcessingService;
 
 import java.util.List;
 import java.util.Random;
 
-public class AsteroidProcess implements IProcessService {
+public class AsteroidProcessing implements IProcessingService {
     @Override
     public void process(GameData gameData, World world) {
         float speed = 0.5f;
