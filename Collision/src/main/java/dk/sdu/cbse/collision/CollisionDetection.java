@@ -27,12 +27,10 @@ public class CollisionDetection implements IPostProcessorService {
                     if (entity1.getClass().equals(Asteroid.class) & getIAsteroidSplitter().findFirst().isPresent()) {
                         asteroids.add(entity1);
                         others.add(entity2);
-                        System.out.println("Reached");
                     }
                     if (entity2.getClass().equals(Asteroid.class) & getIAsteroidSplitter().findFirst().isPresent()) {
                         asteroids.add(entity2);
                         others.add(entity1);
-                        System.out.println("Reached");
                     }
 
                 }

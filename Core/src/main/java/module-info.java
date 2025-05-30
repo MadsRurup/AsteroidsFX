@@ -7,6 +7,10 @@ module Core {
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;
+    requires spring.beans;
+    requires spring.core;
+    requires spring.context;
+    opens dk.sdu.cbse to spring.core, spring.beans, spring.context;
     requires Common;
     exports dk.sdu.cbse;
 }

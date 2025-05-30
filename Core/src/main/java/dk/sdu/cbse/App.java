@@ -10,25 +10,36 @@ import javafx.application.Application;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.List;
 import java.util.ServiceLoader;
 
 
-public class App extends Application {
+public class App {
+
+    private final List<IPluginService> gamePluginServices;
+    private final List<IProcessorService> entityProcessingServiceList;
+    private final List<IPostProcessorService> postEntityProcessingServices;
+
+
+    App(List<IPluginService> gamePluginServices,List<IProcessorService> entityProcessingServiceList,List<IPostProcessorService> postEntityProcessingServices) {
+        this.gamePluginServices = gamePluginServices;
+        this.entityProcessingServiceList = entityProcessingServiceList;
+        this.postEntityProcessingServices = postEntityProcessingServices;
+    }
 
     private final Pane gameWindow = new Pane();
     public static void main(String[] args) {
         System.out.println("Hello World");
-        launch(args);
+        //launch(args);
     }
 
-    @Override
     public void start(Stage stage) throws Exception {
 
 
         GameData gameData = new GameData();
         World world = new World();
         gameData.initialize(stage);
-        for (IPluginService service : getPluginServices()) {
+        for (IPluginService service : gamePluginServices) {
             service.start(gameData,world);
             System.out.println("Plugin Service loaded");
         }
@@ -36,11 +47,11 @@ public class App extends Application {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (IProcessorService service : getProcessService()) {
+                for (IProcessorService service : entityProcessingServiceList) {
                     service.process(gameData,world);
 
                 }
-                for (IPostProcessorService service : getPostProcessingService()) {
+                for (IPostProcessorService service : postEntityProcessingServices) {
                     service.process(gameData,world);
                 }
                 gameData.draw(world);
@@ -53,15 +64,7 @@ public class App extends Application {
 
     }
 
-    private ServiceLoader<IPluginService> getPluginServices() {
-        return ServiceLoader.load(IPluginService.class);
-    }
-    private ServiceLoader<IProcessorService> getProcessService() {
-        return ServiceLoader.load(IProcessorService.class);
-    }
-    private ServiceLoader<IPostProcessorService> getPostProcessingService() {
-        return ServiceLoader.load(IPostProcessorService.class);
-    }
+
 
 
 
