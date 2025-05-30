@@ -58,7 +58,6 @@ public class PlayerProcessor implements IProcessorService {
                 entity.setY(entity.getRadius()+gameData.getHeight());
             }
 
-
         }
     }
     private ServiceLoader<BulletSPI> getBulletSPIs() {

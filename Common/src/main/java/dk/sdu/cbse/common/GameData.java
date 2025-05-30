@@ -72,7 +72,7 @@ public class GameData {
         Text text = new Text();
         StringBuilder string = new StringBuilder();
         for (Integer val: gameInput.getPressed()) {
-            string.append(gameInput.getKeyName(val)).append(", ");
+            string.append(gameInput.getKeyName(val)).append("(").append(val).append(")").append(", ");
         }
         text.setText(string.toString());
         text.setTranslateX(100);
